@@ -11,9 +11,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.navigationItem.title = "Planty"
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(named: "navBarColor")
+        appearance.titleTextAttributes = [.font: UIFont(name: "K2D-Bold", size: 20)!]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
-
-
 }
 
