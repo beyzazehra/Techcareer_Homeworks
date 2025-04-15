@@ -1,6 +1,6 @@
 # Planty App
 
-Simple main page design of a plant app.
+Simple main page design of a plant app using storyboard.
 
 ## Screenshot
 
