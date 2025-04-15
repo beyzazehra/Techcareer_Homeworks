@@ -4,4 +4,4 @@ Simple main page design of a plant app.
 
 ## Screenshot
 
-![](Screenshots/simulator.png)
+<img src="Screenshots/simulator.png" alt="Simulator" width="360" />
