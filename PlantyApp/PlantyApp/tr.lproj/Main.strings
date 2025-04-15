@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "02 - 23 June"; ObjectID = "5Kh-3r-tEa"; */
+"5Kh-3r-tEa.text" = "02 - 23 Haziran";
+
+/* Class = "UIButton"; configuration.title = "All"; ObjectID = "7Ap-Sb-div"; */
+"7Ap-Sb-div.configuration.title" = "Tümü";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7Ap-Sb-div"; */
+"7Ap-Sb-div.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7PQ-RE-Pu1"; */
+"7PQ-RE-Pu1.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Outdoor"; ObjectID = "Agi-1W-4rZ"; */
+"Agi-1W-4rZ.configuration.title" = "Bahçe";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Agi-1W-4rZ"; */
+"Agi-1W-4rZ.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Popular"; ObjectID = "EjL-W6-fey"; */
+"EjL-W6-fey.configuration.title" = "Popüler";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "EjL-W6-fey"; */
+"EjL-W6-fey.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HaL-1e-129"; */
+"HaL-1e-129.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Monstera"; ObjectID = "SSg-om-xh3"; */
+"SSg-om-xh3.text" = "Monstera";
+
+/* Class = "UIButton"; configuration.title = "Add to Cart"; ObjectID = "Xmz-ti-zdc"; */
+"Xmz-ti-zdc.configuration.title" = "Sepete Ekle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Xmz-ti-zdc"; */
+"Xmz-ti-zdc.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Add to Cart"; ObjectID = "Yri-UN-odt"; */
+"Yri-UN-odt.configuration.title" = "Sepete Ekle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Yri-UN-odt"; */
+"Yri-UN-odt.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "30% OFF"; ObjectID = "aEK-Gg-iSf"; */
+"aEK-Gg-iSf.text" = "30% İNDİRİM";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cJs-Eg-p7L"; */
+"cJs-Eg-p7L.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "$39"; ObjectID = "dmr-P8-uzt"; */
+"dmr-P8-uzt.text" = "1499 TL";
+
+/* Class = "UILabel"; text = "Monstera"; ObjectID = "jvg-qh-FAs"; */
+"jvg-qh-FAs.text" = "Monstera";
+
+/* Class = "UIButton"; configuration.title = "Indoor"; ObjectID = "tOB-tO-Jl3"; */
+"tOB-tO-Jl3.configuration.title" = "Ev";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tOB-tO-Jl3"; */
+"tOB-tO-Jl3.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "$39"; ObjectID = "xZ4-jE-dRE"; */
+"xZ4-jE-dRE.text" = "1499 TL";
+
+/* Class = "UILabel"; text = "Find your favorite plant"; ObjectID = "z8q-0F-zSd"; */
+"z8q-0F-zSd.text" = "Favori Bitkini Bul";
