@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>K2D-Bold.ttf</string>
+		<string>PTSerifCaption-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
