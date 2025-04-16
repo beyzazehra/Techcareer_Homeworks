@@ -14,7 +14,7 @@
 		77BFCA792DB0347A0083CE18 /* Exceptions for "ToDoApp" folder in "ToDoApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				resources/Info.plist,
 			);
 			target = 77BFCA662DB034790083CE18 /* ToDoApp */;
 		};
