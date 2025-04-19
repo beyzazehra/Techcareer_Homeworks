@@ -11,10 +11,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		77BFCA792DB0347A0083CE18 /* Exceptions for "ToDoApp" folder in "ToDoApp" target */ = {
+		774234292DB19BBC00828411 /* Exceptions for "ToDoApp" folder in "ToDoApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				resources/Info.plist,
+				Info.plist,
 			);
 			target = 77BFCA662DB034790083CE18 /* ToDoApp */;
 		};
@@ -24,7 +24,7 @@
 		77BFCA692DB034790083CE18 /* ToDoApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				77BFCA792DB0347A0083CE18 /* Exceptions for "ToDoApp" folder in "ToDoApp" target */,
+				774234292DB19BBC00828411 /* Exceptions for "ToDoApp" folder in "ToDoApp" target */,
 			);
 			path = ToDoApp;
 			sourceTree = "<group>";
