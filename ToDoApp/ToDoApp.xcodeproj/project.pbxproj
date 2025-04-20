@@ -26,6 +26,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		77B32C822DB511720082A682 /* screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		77BFCA692DB034790083CE18 /* ToDoApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -50,6 +55,7 @@
 		77BFCA5E2DB034790083CE18 = {
 			isa = PBXGroup;
 			children = (
+				77B32C822DB511720082A682 /* screenshots */,
 				77B32C772DB50DDA0082A682 /* README.md */,
 				77BFCA692DB034790083CE18 /* ToDoApp */,
 				77BFCA682DB034790083CE18 /* Products */,
@@ -80,6 +86,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				77B32C822DB511720082A682 /* screenshots */,
 				77BFCA692DB034790083CE18 /* ToDoApp */,
 			);
 			name = ToDoApp;
