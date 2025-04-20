@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		77B32C782DB50DE40082A682 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77B32C772DB50DDA0082A682 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		77B32C772DB50DDA0082A682 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		77BFCA672DB034790083CE18 /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,6 +50,7 @@
 		77BFCA5E2DB034790083CE18 = {
 			isa = PBXGroup;
 			children = (
+				77B32C772DB50DDA0082A682 /* README.md */,
 				77BFCA692DB034790083CE18 /* ToDoApp */,
 				77BFCA682DB034790083CE18 /* Products */,
 			);
@@ -122,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77B32C782DB50DE40082A682 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
