@@ -13,11 +13,11 @@ class HomeVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let data: [Product] = [
-        Product(id: 1, name: "iPhone 14", image: "telefon", brand: "Apple", category: "Smartphone", price: 49999),
-        Product(id: 2, name: "Galaxy S24", image: "telefon", brand: "Samsung", category: "Smartphone", price: 44999),
-        Product(id: 3, name: "MacBook Air", image: "telefon", brand: "Apple", category: "Laptop", price: 69999),
-        Product(id: 4, name: "PlayStation 5", image: "telefon", brand: "Sony", category: "Gaming", price: 23999),
-        Product(id: 5, name: "AirPods Pro", image: "telefon", brand: "Apple", category: "Accessories", price: 8499)
+        Product(id: 1, name: "iPhone 14", image: "telefon", brand: "Apple", category: "Smartphone", price: 49999, quantity: 0),
+        Product(id: 2, name: "Galaxy S24", image: "telefon", brand: "Samsung", category: "Smartphone", price: 44999, quantity: 0),
+        Product(id: 3, name: "MacBook Air", image: "telefon", brand: "Apple", category: "Laptop", price: 69999, quantity: 0),
+        Product(id: 4, name: "PlayStation 5", image: "telefon", brand: "Sony", category: "Gaming", price: 23999, quantity: 0),
+        Product(id: 5, name: "AirPods Pro", image: "telefon", brand: "Apple", category: "Accessories", price: 8499, quantity: 0)
     ]
     var selectedItem: Product?
 
@@ -100,8 +100,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
         let product = data[indexPath.row]
         cell.productNameLabel.text = product.name
-        cell.priceLabel.text = "\(product.price) ₺"
-        cell.imageView.image = UIImage(named: product.image)
+        cell.priceLabel.text = "\(product.price ?? 0) ₺"
+        cell.imageView.image = UIImage(named: product.image!)
 
         return cell
     }
@@ -115,7 +115,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToProductDetail" {
             let destinationVC = segue.destination as! ProductDetailVC
-            destinationVC.item = selectedItem
+            destinationVC.incomingItem = selectedItem
         }
     }
 }

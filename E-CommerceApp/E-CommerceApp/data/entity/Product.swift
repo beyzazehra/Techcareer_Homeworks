@@ -1,10 +1,11 @@
 import Foundation
 
 struct Product {
-    var id: Int
-    var name: String
-    var image: String
-    var brand: String
-    var category: String
-    var price: Int
+    let id: Int?
+    let name: String?
+    let image: String?
+    let brand: String?
+    let category: String?
+    let price: Int?
+    var quantity: Int?
 }
