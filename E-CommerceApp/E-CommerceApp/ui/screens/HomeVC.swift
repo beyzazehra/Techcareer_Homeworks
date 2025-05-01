@@ -3,34 +3,35 @@ import UIKit
 class HomeVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
-   
     @IBOutlet weak var searchBarToggleButton: UIButton!
-    
     @IBOutlet weak var cartButton: UIButton!
-    
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let data: [Product] = [
-        Product(id: 1, name: "iPhone 14", image: "telefon", brand: "Apple", category: "Smartphone", price: 49999, quantity: 0),
-        Product(id: 2, name: "Galaxy S24", image: "telefon", brand: "Samsung", category: "Smartphone", price: 44999, quantity: 0),
-        Product(id: 3, name: "MacBook Air", image: "telefon", brand: "Apple", category: "Laptop", price: 69999, quantity: 0),
-        Product(id: 4, name: "PlayStation 5", image: "telefon", brand: "Sony", category: "Gaming", price: 23999, quantity: 0),
-        Product(id: 5, name: "AirPods Pro", image: "telefon", brand: "Apple", category: "Accessories", price: 8499, quantity: 0)
-    ]
+    var products: [Product] = []
     var selectedItem: Product?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchBar()
-        
+        fetchProducts()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
     }
 
+    func fetchProducts() {
+        APIService.shared.fetchProducts { [weak self] result in
+            switch result {
+            case .success(let products):
+                self?.products = products
+                self?.collectionView.reloadData()
+            case .failure(let error):
+                print("Error fetching products: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     private func configureSearchBar() {
 
         searchBar.backgroundImage = UIImage()
@@ -93,21 +94,20 @@ class HomeVC: UIViewController {
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.count
+        products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
-        let product = data[indexPath.row]
-        cell.productNameLabel.text = product.name
-        cell.priceLabel.text = "\(product.price ?? 0) ₺"
-        cell.imageView.image = UIImage(named: product.image!)
+        let product = products[indexPath.row]
+
+        cell.configure(with: product)
 
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem = data[indexPath.row]
+        selectedItem = products[indexPath.row]
         performSegue(withIdentifier: "goToProductDetail", sender: self)
     }
 

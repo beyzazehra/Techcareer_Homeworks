@@ -1,11 +1,24 @@
 import Foundation
 
-struct Product {
+struct Product: Codable {
     let id: Int?
     let name: String?
     let image: String?
-    let brand: String?
     let category: String?
     let price: Int?
+    let brand: String?
     var quantity: Int?
+    var imageURL: String {
+            guard let image = image else { return "" }
+            return "http://kasimadalan.pe.hu/urunler/resimler/\(image)"
+        }
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "ad"
+        case image = "resim"
+        case category = "kategori"
+        case price = "fiyat"
+        case brand = "marka"
+    }
 }
