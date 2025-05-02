@@ -24,7 +24,7 @@ class CustomTableViewCell: UITableViewCell {
     var onQuantityChanged: ((Int) -> Void)?
         private var quantity = 1
 
-        func configure(with product: Product) {
+        func configure(with product: Cart) {
             productName.text = product.name
             productPrice.text = "₺\(product.price ?? 0)"
             productImageView.image = UIImage(named: product.image ?? "")

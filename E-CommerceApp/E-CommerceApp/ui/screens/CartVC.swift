@@ -4,8 +4,9 @@ class CartVC: UIViewController {
     
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var cartItemCountLabel: UILabel!
-    
-    var cartItems: [Product] = []
+    let totalLabel = UILabel()
+
+    var cartItems: [Cart] = []
     var incomingItem: Product?
     
     override func viewDidLoad() {
@@ -13,21 +14,84 @@ class CartVC: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
         setupTableFooter()
-        if let newItem = incomingItem {
+        /*if let newItem = incomingItem {
             if let index = cartItems.firstIndex(where: { $0.id == newItem.id }) {
                 cartItems[index].quantity = (cartItems[index].quantity ?? 0) + (newItem.quantity ?? 0)
             } else {
                 cartItems.append(newItem)
             }
-        }
-        updateCartItemCount()
+        } */
+        // updateCartItemCount()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.hidesBackButton = true
-        updateCartItemCount()
+        // updateCartItemCount()
+        fetchItems()
     }
+    
+    func fetchItems() {
+        APIService.shared.fetchCartItems(username: "beyzazehra") { [weak self] result in
+            switch result {
+            case .success(let products):
+                self?.cartItems = products
+                self?.cartTableView.reloadData()
+                self?.updateCartItemCount()
+                self?.updateTotalPrice()
+            case .failure(let error):
+                print("Hata oluştu: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func updateItemQuantity(at indexPath: IndexPath, newQuantity: Int) {
+        let item = cartItems[indexPath.row]
+
+        APIService.shared.removeFromCartFull(cartItem: item) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success:
+                print("Ürün silindi.")
+                self.cartItems.remove(at: indexPath.row)
+
+                if newQuantity > 0 {
+                    var updatedItem = item
+                    updatedItem.quantity = newQuantity
+
+                    APIService.shared.addToCart(cartItem: updatedItem) { [weak self] addResult in
+                        guard let self = self else { return }
+
+                        switch addResult {
+                        case .success:
+                            print("Ürün tekrar eklendi.")
+                            self.cartItems.append(updatedItem)
+                        case .failure(let error):
+                            print("Ekleme hatası: \(error.localizedDescription)")
+                        }
+
+                        DispatchQueue.main.async {
+                            self.cartTableView.reloadData()
+                            self.updateCartItemCount()
+                            self.updateTotalPrice()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        //self.cartTableView.reloadData()
+                        self.updateCartItemCount()
+                        self.updateTotalPrice()
+                    }
+                }
+
+            case .failure(let error):
+                print("Silme hatası: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    
     
     @IBAction func navigateBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -36,6 +100,11 @@ class CartVC: UIViewController {
     func updateCartItemCount() {
         let totalCount = cartItems.reduce(0) { $0 + ($1.quantity ?? 0) }
         cartItemCountLabel.text = "\(totalCount) Ürün"
+    }
+    
+    func updateTotalPrice() {
+        let totalPrice = cartItems.reduce(0) { $0 + (($1.price ?? 1) * Int($1.quantity ?? 0)) }
+        totalLabel.text = "₺\(totalPrice)"
     }
     
     func setupTableFooter() {
@@ -48,7 +117,6 @@ class CartVC: UIViewController {
         topLabel.text = "Toplam"
         topLabel.font = UIFont.systemFont(ofSize: 16)
         
-        let totalLabel = UILabel()
         totalLabel.text = "₺1234"
         totalLabel.font = UIFont.boldSystemFont(ofSize: 18)
         totalLabel.textAlignment = .right
@@ -98,27 +166,20 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cartItems.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cartTableView.rowHeight = 140
         
         let product = cartItems[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCartCell", for: indexPath) as! CustomTableViewCell
-        cell.configure(with: product)
-        cell.onQuantityChanged = { [weak self] newQuantity in
-            guard let self = self else { return }
-            if newQuantity == 0 {
-                self.cartItems.remove(at: indexPath.row)
-                self.cartTableView.deleteRows(at: [indexPath], with: .fade)
-                return
-            } else {
-                self.cartItems[indexPath.row].quantity = newQuantity
-            }
-            self.updateCartItemCount()
-        }
         
+        cell.configure(with: product)
+        
+        cell.onQuantityChanged = { [weak self] newQuantity in
+            self?.updateItemQuantity(at: indexPath, newQuantity: newQuantity)
+        }
+
+
         return cell
     }
-    
-    
 }

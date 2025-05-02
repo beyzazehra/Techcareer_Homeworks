@@ -43,9 +43,21 @@ class ProductDetailVC: UIViewController {
     }
     
     @IBAction func addToCartButtonTapped(_ sender: Any) {
-        guard var item = incomingItem else { return }
-           item.quantity = quantity
-           performSegue(withIdentifier: "goToCart", sender: item)
+        guard let item = incomingItem else { return } // incomingItem -> Product
+            let selectedQuantity = self.quantity // kullanıcının seçtiği adet
+
+            let cartItem = Cart(from: item, quantity: selectedQuantity, username: "beyzazehra")
+
+            APIService.shared.addToCart(cartItem: cartItem) { result in
+                switch result {
+                case .success(let value):
+                    print("✅ Sepete eklendi: \(value)")
+                case .failure(let error):
+                    print("❌ Hata: \(error.localizedDescription)")
+                }
+            }
+
+            performSegue(withIdentifier: "goToCart", sender: cartItem)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
