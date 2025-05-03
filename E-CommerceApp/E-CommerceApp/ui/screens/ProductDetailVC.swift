@@ -22,6 +22,7 @@ class ProductDetailVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.hidesBackButton = true
+        checkIfFavorite()
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -30,10 +31,37 @@ class ProductDetailVC: UIViewController {
     }
     
     @IBAction func addToFavs(_ sender: Any) {
+        guard let item = incomingItem, let id = item.id else { return }
+
+        var favorites = UserDefaults.standard.array(forKey: "favoriteIDs") as? [Int] ?? []
+            
+            if favorites.contains(id) {
+                favorites.removeAll { $0 == id }
+                incomingItem?.isFavorite = false
+            } else {
+                favorites.append(id)
+                incomingItem?.isFavorite = true
+            }
+            
+            UserDefaults.standard.set(favorites, forKey: "favoriteIDs")
+            
+            updateFavoriteIcon()
+    }
+
+
+    func updateFavoriteIcon() {
+        guard let item = incomingItem, let id = item.id else { return }
+        let favoriteIDs = UserDefaults.standard.array(forKey: "favoriteIDs") as? [Int] ?? []
+        let imageName = favoriteIDs.contains(id) ? "heart.fill" : "heart"
+        addToFavsButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
     
-    
-    
+    func checkIfFavorite() {
+        guard let item = incomingItem, let id = item.id else { return }
+        let favorites = UserDefaults.standard.array(forKey: "favoriteIDs") as? [Int] ?? []
+        incomingItem!.isFavorite = favorites.contains(id)
+    }
+
     @IBAction func decraseQuantity(_ sender: Any) {
         if quantity > 1 {
                 quantity -= 1
@@ -98,8 +126,13 @@ class ProductDetailVC: UIViewController {
     }
     
     func configProductViews() {
-        productName.text = incomingItem?.name
+        
+        if let name = incomingItem?.name, let brand = incomingItem?.brand {
+            productName.text = "\(brand)\n\(name)"
+        }
+        
         productPrice.text = "₺\(incomingItem?.price ?? 0)"
+        
         let imageUrl = incomingItem?.imageURL
         AF.request(imageUrl!).responseData { response in
             switch response.result {

@@ -1,31 +1,30 @@
 import UIKit
 import Alamofire
 
-class CustomCollectionViewCell: UICollectionViewCell {
+class FavoritesTableViewCell: UITableViewCell {
     
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var productNameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var favImageView: UIImageView!
+    @IBOutlet weak var favProductName: UILabel!
+    @IBOutlet weak var favProductPrice: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        imageView.layer.cornerRadius = 20
-        imageView.clipsToBounds = true
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     func configure(with product: Product) {
-        productNameLabel.text = product.name
-        priceLabel.text = "\(product.price ?? 0) ₺"
-        
+        favProductName.text = product.name
+        favProductPrice.text = "₺\(product.price ?? 0)"
         let imageUrl = product.imageURL
         AF.request(imageUrl).responseData { response in
             switch response.result {
             case .success(let data):
                 
                 DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data)
+                    self.favImageView.image = UIImage(data: data)
                 }
             case .failure(let error):
                 print("Resim yükleme hatası: \(error)")

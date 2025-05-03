@@ -8,6 +8,7 @@ struct Product: Codable {
     let price: Int?
     let brand: String?
     var quantity: Int?
+    var isFavorite: Bool = false
     var imageURL: String {
             guard let image = image else { return "" }
             return "http://kasimadalan.pe.hu/urunler/resimler/\(image)"
