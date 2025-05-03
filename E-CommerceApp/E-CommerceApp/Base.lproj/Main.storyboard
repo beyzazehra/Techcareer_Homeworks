@@ -69,40 +69,52 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svo-TN-Hey">
                                         <rect key="frame" x="0.0" y="0.0" width="476" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t9-Pa-RSa">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t9-Pa-RSa">
                                                 <rect key="frame" x="24" y="8" width="105" height="34"/>
+                                                <color key="backgroundColor" red="0.81176470590000005" green="1" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="105" id="cqP-fy-VsN"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Tümü" cornerStyle="capsule">
-                                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
-                                                    <color key="baseBackgroundColor" red="0.81176470588235294" green="1" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </buttonConfiguration>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Tümü">
+                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tumuButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mBF-EO-RTH"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="as6-Tm-20g">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="as6-Tm-20g">
                                                 <rect key="frame" x="137" y="8" width="105" height="34"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Aksesuar" cornerStyle="capsule">
-                                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
-                                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Aksesuar">
+                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="aksesuarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vCE-ie-DUt"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnN-z4-juG">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnN-z4-juG">
                                                 <rect key="frame" x="250" y="8" width="105" height="34"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Kozmetik" cornerStyle="capsule">
-                                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
-                                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Kozmetik">
+                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="kozmetikButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bWa-cu-xuF"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-7r-GGX">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-7r-GGX">
                                                 <rect key="frame" x="363" y="8" width="105" height="34"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Teknoloji" cornerStyle="capsule">
-                                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
-                                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Teknoloji">
+                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="teknolojiButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DqO-Ag-DWV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -232,11 +244,15 @@
                     <navigationItem key="navigationItem" id="dDX-m3-6fO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="aksesuarButton" destination="as6-Tm-20g" id="0gf-qZ-BvF"/>
                         <outlet property="cartButton" destination="Qe4-Af-57Y" id="6iA-eq-OpR"/>
                         <outlet property="collectionView" destination="gIc-Dr-Yum" id="1XM-VW-oNU"/>
+                        <outlet property="kozmetikButton" destination="mnN-z4-juG" id="5sg-jb-Ohu"/>
                         <outlet property="searchBar" destination="ccI-vP-Gje" id="AJ7-mp-neR"/>
                         <outlet property="searchBarHeightConstraint" destination="jw9-JJ-WbW" id="NSZ-cc-ywW"/>
                         <outlet property="searchBarToggleButton" destination="pMo-j0-FMX" id="xsx-vW-SHF"/>
+                        <outlet property="teknolojiButton" destination="yTM-7r-GGX" id="XSi-Nk-ftS"/>
+                        <outlet property="tumuButton" destination="7t9-Pa-RSa" id="fnI-is-aEf"/>
                         <segue destination="oRp-r3-3n0" kind="show" identifier="goToProductDetail" id="rar-E0-pQv"/>
                     </connections>
                 </viewController>
@@ -499,6 +515,9 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="medium"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addToFavs:" destination="oRp-r3-3n0" eventType="touchUpInside" id="7Iz-Lw-3gI"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aQa-Hn-veK">
                                 <rect key="frame" x="46.666666666666657" y="212" width="300" height="300"/>
@@ -649,6 +668,7 @@
                     <navigationItem key="navigationItem" id="TP8-Be-r0U"/>
                     <connections>
                         <outlet property="addToCartButton" destination="ImH-Ir-tXp" id="bwj-V0-9E6"/>
+                        <outlet property="addToFavsButton" destination="5S4-JH-Gdt" id="aDM-n0-L6T"/>
                         <outlet property="productImage" destination="aQa-Hn-veK" id="YHn-C4-c0V"/>
                         <outlet property="productName" destination="ZXQ-km-gzk" id="82e-6e-tTI"/>
                         <outlet property="productPrice" destination="tIQ-TQ-fMd" id="4SG-xD-sd5"/>

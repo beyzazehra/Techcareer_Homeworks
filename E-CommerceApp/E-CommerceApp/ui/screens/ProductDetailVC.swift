@@ -11,7 +11,7 @@ class ProductDetailVC: UIViewController {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var addToCartButton: UIButton!
-    
+    @IBOutlet weak var addToFavsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,11 @@ class ProductDetailVC: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func addToFavs(_ sender: Any) {
+    }
+    
+    
     
     @IBAction func decraseQuantity(_ sender: Any) {
         if quantity > 1 {

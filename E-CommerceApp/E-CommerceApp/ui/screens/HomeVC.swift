@@ -7,6 +7,10 @@ class HomeVC: UIViewController {
     @IBOutlet weak var searchBarToggleButton: UIButton!
     @IBOutlet weak var cartButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tumuButton: UIButton!
+    @IBOutlet weak var aksesuarButton: UIButton!
+    @IBOutlet weak var kozmetikButton: UIButton!
+    @IBOutlet weak var teknolojiButton: UIButton!
     
     var allProducts: [Product] = []
     var products: [Product] = []
@@ -16,6 +20,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         fetchProducts()
         configureSearchBar()
+        setupButtons()
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -100,6 +105,67 @@ class HomeVC: UIViewController {
     @IBAction func navigateToCartVC(_ sender: Any) {
     }
 
+    @IBAction func tumuButton(_ sender: Any) {
+        
+        resetButtonColors()
+        styleButton(tumuButton)
+        filterProducts(by: "tumu")
+    }
+    
+    @IBAction func aksesuarButton(_ sender: Any) {
+        
+        resetButtonColors()
+        styleButton(aksesuarButton)
+        filterProducts(by: "Aksesuar")
+    }
+    
+    @IBAction func kozmetikButton(_ sender: Any) {
+        
+        resetButtonColors()
+        styleButton(kozmetikButton)
+        filterProducts(by: "Kozmetik")
+    }
+    
+    @IBAction func teknolojiButton(_ sender: Any) {
+        
+        resetButtonColors()
+        styleButton(teknolojiButton)
+        filterProducts(by: "Teknoloji")
+    }
+    
+    func filterProducts(by category: String) {
+        if category == "tumu" {
+            products = allProducts
+        } else {
+            products = allProducts.filter { $0.category == category }
+        }
+        collectionView.reloadData()
+    }
+
+    func setupButtons() {
+        let buttons = [tumuButton, aksesuarButton, kozmetikButton, teknolojiButton]
+        
+        for button in buttons {
+            button?.layer.cornerRadius = 16
+            button?.clipsToBounds = true
+            button?.backgroundColor = .white
+            button?.setTitleColor(.black, for: .normal)
+        }
+        tumuButton?.backgroundColor = UIColor(red: 207/255, green: 255/255, blue: 105/255, alpha: 1.0)
+    }
+
+    func resetButtonColors() {
+        let buttons = [tumuButton, aksesuarButton, kozmetikButton, teknolojiButton]
+        
+        for button in buttons {
+            button?.backgroundColor = .white
+        }
+    }
+
+    func styleButton(_ button: UIButton) {
+        button.backgroundColor = UIColor(red: 207/255, green: 255/255, blue: 105/255, alpha: 1.0)
+    }
+    
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {

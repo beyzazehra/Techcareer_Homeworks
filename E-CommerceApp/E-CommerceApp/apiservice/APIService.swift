@@ -6,11 +6,9 @@ class APIService {
     static let shared = APIService()
     
     private init() {}
-    
-    private let baseUrl = "http://kasimadalan.pe.hu/urunler"
-    
+        
     func fetchProducts(completion: @escaping (Result<[Product], Error>) -> Void) {
-        let url = "\(baseUrl)/tumUrunleriGetir.php"
+        let url = "http://kasimadalan.pe.hu/urunler/tumUrunleriGetir.php"
         
         AF.request(url, method: .get)
             .validate()
@@ -49,7 +47,6 @@ class APIService {
             }
         }
     }
-    
     
     func fetchCartItems(username: String, completion: @escaping (Result<[Cart], Error>) -> Void) {
         let url = "http://kasimadalan.pe.hu/urunler/sepettekiUrunleriGetir.php"
