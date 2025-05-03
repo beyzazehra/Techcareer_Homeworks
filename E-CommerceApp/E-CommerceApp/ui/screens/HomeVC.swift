@@ -8,13 +8,15 @@ class HomeVC: UIViewController {
     @IBOutlet weak var cartButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var allProducts: [Product] = []
     var products: [Product] = []
     var selectedItem: Product?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSearchBar()
         fetchProducts()
+        configureSearchBar()
+        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
@@ -24,6 +26,7 @@ class HomeVC: UIViewController {
         APIService.shared.fetchProducts { [weak self] result in
             switch result {
             case .success(let products):
+                self?.allProducts = products
                 self?.products = products
                 self?.collectionView.reloadData()
             case .failure(let error):
@@ -69,6 +72,16 @@ class HomeVC: UIViewController {
         searchBarHeightConstraint.constant = 0
     }
     
+    func filterProducts(with keyword: String) {
+        if keyword.isEmpty {
+            products = allProducts
+        } else {
+            products = allProducts.filter {
+                $0.name!.lowercased().contains(keyword.lowercased())
+            }
+        }
+        collectionView.reloadData()
+    }
     
     @IBAction func toggleSearchBar(_ sender: Any) {
         
@@ -121,5 +134,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width / 2.0 - 20, height: 270)
+    }
+}
+
+extension HomeVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterProducts(with: searchText)
     }
 }

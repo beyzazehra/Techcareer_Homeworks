@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCv-73-Q1W">
-                                <rect key="frame" x="23.999999999999993" y="162" width="98.333333333333314" height="33"/>
+                                <rect key="frame" x="24" y="162" width="148" height="44"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Trending">
+                                    <fragment content="SwiftShop">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="24" name="AvenirNext-Medium"/>
+                                            <font key="NSFont" size="32" name="AvenirNext-Medium"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -139,7 +139,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="chI-HU-J7w"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gIc-Dr-Yum">
-                                <rect key="frame" x="24" y="362.33333333333326" width="345" height="421.66666666666674"/>
+                                <rect key="frame" x="24" y="362.33333333333326" width="345" height="372.66666666666674"/>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h7q-72-pSs">
                                     <size key="itemSize" width="160" height="230"/>
@@ -224,7 +224,13 @@
                             <constraint firstItem="ccI-vP-Gje" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ybc-3o-g32"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" id="NwO-Wp-AJK">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
+                        <color key="badgeColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="dDX-m3-6fO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cartButton" destination="Qe4-Af-57Y" id="6iA-eq-OpR"/>
                         <outlet property="collectionView" destination="gIc-Dr-Yum" id="1XM-VW-oNU"/>
@@ -236,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1125.9541984732823" y="-49.295774647887328"/>
+            <point key="canvasLocation" x="531" y="-54"/>
         </scene>
         <!--CartVC-->
         <scene sceneID="anW-sQ-ArU">
@@ -290,7 +296,7 @@
                                 <rect key="frame" x="349" y="264" width="20" height="20"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="t7g-Wu-myg">
-                                <rect key="frame" x="0.0" y="311.33333333333326" width="393" height="472.66666666666674"/>
+                                <rect key="frame" x="0.0" y="311.33333333333326" width="393" height="423.66666666666674"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94509803920000002" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -429,6 +435,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="YcF-lw-s6r" secondAttribute="trailing" constant="8" id="xWi-oz-aLg"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" id="lAj-wZ-6IU">
+                        <imageReference key="image" image="cart" catalog="system" symbolScale="large"/>
+                        <color key="badgeColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="selectedImage" image="cart.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="EPy-Hx-k6A"/>
                     <connections>
                         <outlet property="cartItemCountLabel" destination="v02-0M-SZE" id="6s0-dJ-P1J"/>
@@ -438,7 +449,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCY-r6-Tw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896.9465648854962" y="-507.04225352112678"/>
+            <point key="canvasLocation" x="2106" y="-54"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ADS-OP-RqP">
+            <objects>
+                <viewController id="N4u-2k-d7t" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jav-7Q-eU9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zKY-pQ-xGI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="3vg-WK-6AY">
+                        <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                        <color key="badgeColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iN5-g2-e4x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2854" y="-54"/>
         </scene>
         <!--ProductDetailVC-->
         <scene sceneID="k7O-GJ-Bva">
@@ -615,6 +646,7 @@
                             <constraint firstItem="1LW-W6-b0f" firstAttribute="leading" secondItem="hb6-GI-vVw" secondAttribute="leading" constant="24" id="xV4-qJ-ucB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TP8-Be-r0U"/>
                     <connections>
                         <outlet property="addToCartButton" destination="ImH-Ir-tXp" id="bwj-V0-9E6"/>
                         <outlet property="productImage" destination="aQa-Hn-veK" id="YHn-C4-c0V"/>
@@ -626,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPT-HH-JtZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1898" y="193"/>
+            <point key="canvasLocation" x="1324" y="388"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QUL-FY-2oG">
@@ -639,12 +671,34 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vLT-yB-uhR"/>
+                        <segue destination="rnk-d0-X0m" kind="relationship" relationship="rootViewController" id="vLT-yB-uhR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ci6-d3-eSm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121" y="-49"/>
+            <point key="canvasLocation" x="353" y="-794"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="wwS-2w-l9o">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="rnk-d0-X0m" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="N24-I8-mPk"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qcE-xy-wd1">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.80000000000000004"/>
+                        <color key="selectedImageTintColor" red="0.81176470590000005" green="1" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="yza-NK-u0g"/>
+                        <segue destination="zPO-Ha-2Iz" kind="relationship" relationship="viewControllers" id="zus-eJ-Sxg"/>
+                        <segue destination="N4u-2k-d7t" kind="relationship" relationship="viewControllers" id="d2o-x8-NEn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tZE-VV-mQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="-794"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -652,9 +706,13 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="plus" catalog="system" width="128" height="113"/>
