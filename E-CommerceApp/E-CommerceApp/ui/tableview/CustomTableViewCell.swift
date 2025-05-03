@@ -1,8 +1,9 @@
 import UIKit
+import Alamofire
 
 class CustomTableViewCell: UITableViewCell {
-
-  
+    
+    
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -12,39 +13,48 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     var onQuantityChanged: ((Int) -> Void)?
-        private var quantity = 1
-
-        func configure(with product: Cart) {
-            productName.text = product.name
-            productPrice.text = "₺\(product.price ?? 0)"
-            productImageView.image = UIImage(named: product.image ?? "")
-            quantity = product.quantity ?? 1
-            quantityLabel.text = "\(quantity)"
-        }
-
-        @IBAction func plusTapped(_ sender: UIButton) {
-            quantity += 1
-            quantityLabel.text = "\(quantity)"
-            onQuantityChanged?(quantity)
-        }
-
-        @IBAction func minusTapped(_ sender: UIButton) {
-            if quantity > 1 {
-                quantity -= 1
-                quantityLabel.text = "\(quantity)"
-                onQuantityChanged?(quantity)
-            } else {
-                onQuantityChanged?(0)
+    private var quantity = 1
+    
+    func configure(with product: Cart) {
+        productName.text = product.name
+        productPrice.text = "₺\(product.price ?? 0)"
+        quantity = product.quantity ?? 1
+        quantityLabel.text = "\(quantity)"
+        
+        let imageUrl = product.imageURL
+        AF.request(imageUrl).responseData { response in
+            switch response.result {
+            case .success(let data):
+                
+                DispatchQueue.main.async {
+                    self.productImageView.image = UIImage(data: data)
+                }
+            case .failure(let error):
+                print("Resim yükleme hatası: \(error)")
             }
         }
+    }
+    
+    @IBAction func plusTapped(_ sender: UIButton) {
+        quantity += 1
+        quantityLabel.text = "\(quantity)"
+        onQuantityChanged?(quantity)
+    }
+    
+    @IBAction func minusTapped(_ sender: UIButton) {
+        if quantity > 1 {
+            quantity -= 1
+            quantityLabel.text = "\(quantity)"
+            onQuantityChanged?(quantity)
+        } else {
+            onQuantityChanged?(0)
+        }
+    }
 }

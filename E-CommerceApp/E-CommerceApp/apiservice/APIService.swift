@@ -49,7 +49,7 @@ class APIService {
             }
         }
     }
-
+    
     
     func fetchCartItems(username: String, completion: @escaping (Result<[Cart], Error>) -> Void) {
         let url = "http://kasimadalan.pe.hu/urunler/sepettekiUrunleriGetir.php"
@@ -70,7 +70,8 @@ class APIService {
                         completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: message])))
                     }
                 case .failure(let error):
-                    completion(.failure(error))
+                    print(error.localizedDescription)
+                    completion(.success([]))
                 }
             }
     }
@@ -78,7 +79,7 @@ class APIService {
     func removeFromCartFull(cartItem: Cart, completion: @escaping (Result<Any, Error>) -> Void) {
         let url = "http://kasimadalan.pe.hu/urunler/sepettenUrunSil.php"
         let parameters: [String: Any] = [
-            "sepetId": cartItem.id ?? "",
+            "sepetId": cartItem.id,
             "kullaniciAdi": "beyzazehra"
         ]
         
@@ -91,6 +92,44 @@ class APIService {
                     completion(.failure(error))
                 }
             }
+    }
+    
+    func addToCart2(cartItem: Cart, completion: @escaping (Result<Any, Error>) -> Void) {
+        let url = "http://kasimadalan.pe.hu/urunler/sepeteUrunEkle.php"
+        let parameters: [String: Any] = [
+            "ad": cartItem.name ?? "",
+            "resim": cartItem.image ?? "",
+            "kategori": cartItem.category ?? "",
+            "fiyat": cartItem.price ?? 0,
+            "marka": cartItem.brand ?? "",
+            "siparisAdeti": cartItem.quantity ?? 1,
+            "kullaniciAdi": cartItem.username ?? ""
+        ]
+        
+        AF.request(url,
+                   method: .post,
+                   parameters: parameters,
+                   encoding: URLEncoding.default)
+        .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func updateCart2(cartItem: Cart, completion: @escaping (Result<Any, Error>) -> Void) {
+   
+        removeFromCartFull(cartItem: cartItem) { result in
+            switch result {
+            case .success:
+                self.addToCart2(cartItem: cartItem, completion: completion)
+            case .failure:
+                break
+            }
+        }
     }
 }
 

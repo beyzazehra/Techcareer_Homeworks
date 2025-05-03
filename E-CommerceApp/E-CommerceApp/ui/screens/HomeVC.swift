@@ -84,8 +84,6 @@ class HomeVC: UIViewController {
         })
     }
 
-    
-    
     @IBAction func navigateToCartVC(_ sender: Any) {
     }
 

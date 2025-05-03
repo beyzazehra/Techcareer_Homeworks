@@ -4,34 +4,27 @@ class CartVC: UIViewController {
     
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var cartItemCountLabel: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     let totalLabel = UILabel()
-
     var cartItems: [Cart] = []
-    var incomingItem: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cartTableView.delegate = self
         cartTableView.dataSource = self
         setupTableFooter()
-        /*if let newItem = incomingItem {
-            if let index = cartItems.firstIndex(where: { $0.id == newItem.id }) {
-                cartItems[index].quantity = (cartItems[index].quantity ?? 0) + (newItem.quantity ?? 0)
-            } else {
-                cartItems.append(newItem)
-            }
-        } */
-        // updateCartItemCount()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.hidesBackButton = true
-        // updateCartItemCount()
+        
         fetchItems()
     }
     
     func fetchItems() {
+        indicator.isHidden = false
         APIService.shared.fetchCartItems(username: "beyzazehra") { [weak self] result in
             switch result {
             case .success(let products):
@@ -42,57 +35,32 @@ class CartVC: UIViewController {
             case .failure(let error):
                 print("Hata oluştu: \(error.localizedDescription)")
             }
+            self?.indicator.isHidden = true
         }
     }
 
     func updateItemQuantity(at indexPath: IndexPath, newQuantity: Int) {
-        let item = cartItems[indexPath.row]
+       
+        if indicator.isHidden == false {
+            return
+        }
+        
+        self.indicator.isHidden = false
 
-        APIService.shared.removeFromCartFull(cartItem: item) { [weak self] result in
-            guard let self = self else { return }
+        var item = cartItems[indexPath.row]
+        item.quantity = newQuantity
 
-            switch result {
-            case .success:
-                print("Ürün silindi.")
-                self.cartItems.remove(at: indexPath.row)
-
-                if newQuantity > 0 {
-                    var updatedItem = item
-                    updatedItem.quantity = newQuantity
-
-                    APIService.shared.addToCart(cartItem: updatedItem) { [weak self] addResult in
-                        guard let self = self else { return }
-
-                        switch addResult {
-                        case .success:
-                            print("Ürün tekrar eklendi.")
-                            self.cartItems.append(updatedItem)
-                        case .failure(let error):
-                            print("Ekleme hatası: \(error.localizedDescription)")
-                        }
-
-                        DispatchQueue.main.async {
-                            self.cartTableView.reloadData()
-                            self.updateCartItemCount()
-                            self.updateTotalPrice()
-                        }
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        //self.cartTableView.reloadData()
-                        self.updateCartItemCount()
-                        self.updateTotalPrice()
-                    }
-                }
-
-            case .failure(let error):
-                print("Silme hatası: \(error.localizedDescription)")
+        if newQuantity > 0 {
+            APIService.shared.updateCart2(cartItem: item ) { [weak self] result in
+                self?.fetchItems()
+            }
+        } else {
+            APIService.shared.removeFromCartFull(cartItem: item) { [weak self] result in
+                self?.fetchItems()
             }
         }
     }
 
-    
-    
     @IBAction func navigateBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -117,7 +85,7 @@ class CartVC: UIViewController {
         topLabel.text = "Toplam"
         topLabel.font = UIFont.systemFont(ofSize: 16)
         
-        totalLabel.text = "₺1234"
+        totalLabel.text = "₺0"
         totalLabel.font = UIFont.boldSystemFont(ofSize: 18)
         totalLabel.textAlignment = .right
 

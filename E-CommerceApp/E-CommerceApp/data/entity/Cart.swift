@@ -1,7 +1,7 @@
 import Foundation
 
 struct Cart: Codable {
-    let id: Int?
+    var id: Int?
     let name: String?
     let image: String?
     let category: String?

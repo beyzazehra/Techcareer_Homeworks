@@ -264,8 +264,8 @@
                                     <action selector="navigateBack:" destination="zPO-Ha-2Iz" eventType="touchUpInside" id="zAl-Bl-CkZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Ürün" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v02-0M-SZE">
-                                <rect key="frame" x="24.000000000000004" y="264" width="51.333333333333343" height="20.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Ürün" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v02-0M-SZE">
+                                <rect key="frame" x="24" y="264" width="52" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -286,6 +286,9 @@
                                     <constraint firstAttribute="height" constant="1" id="X5C-rb-dvd"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="6Hm-55-Pzr">
+                                <rect key="frame" x="349" y="264" width="20" height="20"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="t7g-Wu-myg">
                                 <rect key="frame" x="0.0" y="311.33333333333326" width="393" height="472.66666666666674"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -413,7 +416,9 @@
                             <constraint firstItem="t7g-Wu-myg" firstAttribute="top" secondItem="YcF-lw-s6r" secondAttribute="bottom" constant="18" id="DcY-sU-82G"/>
                             <constraint firstItem="u4b-EV-BNO" firstAttribute="leading" secondItem="L3T-0d-MbB" secondAttribute="leading" constant="14" id="Gje-VV-iW7"/>
                             <constraint firstItem="t7g-Wu-myg" firstAttribute="leading" secondItem="L3T-0d-MbB" secondAttribute="leading" id="MFl-tS-f5z"/>
+                            <constraint firstItem="6Hm-55-Pzr" firstAttribute="top" secondItem="hxe-h7-lax" secondAttribute="bottom" constant="8" id="NfS-B0-SMB"/>
                             <constraint firstItem="hxe-h7-lax" firstAttribute="leading" secondItem="N0z-Jk-Fkv" secondAttribute="leadingMargin" constant="8" id="UJg-I3-l2i"/>
+                            <constraint firstItem="L3T-0d-MbB" firstAttribute="trailing" secondItem="6Hm-55-Pzr" secondAttribute="trailing" constant="24" id="Zlc-0E-ayB"/>
                             <constraint firstItem="L3T-0d-MbB" firstAttribute="trailing" secondItem="t7g-Wu-myg" secondAttribute="trailing" id="fGY-tv-Bvt"/>
                             <constraint firstItem="L3T-0d-MbB" firstAttribute="bottom" secondItem="t7g-Wu-myg" secondAttribute="bottom" id="jLY-T6-wbQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hxe-h7-lax" secondAttribute="trailing" constant="8" id="jga-48-nGQ"/>
@@ -428,6 +433,7 @@
                     <connections>
                         <outlet property="cartItemCountLabel" destination="v02-0M-SZE" id="6s0-dJ-P1J"/>
                         <outlet property="cartTableView" destination="t7g-Wu-myg" id="Cej-17-hmI"/>
+                        <outlet property="indicator" destination="6Hm-55-Pzr" id="elC-DV-Eec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCY-r6-Tw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -642,7 +648,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d1t-i0-qBh"/>
+        <segue reference="Aih-47-nT7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>

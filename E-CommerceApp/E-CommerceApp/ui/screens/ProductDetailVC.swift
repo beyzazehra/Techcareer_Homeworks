@@ -1,4 +1,5 @@
 import UIKit
+import Alamofire
 
 class ProductDetailVC: UIViewController {
 
@@ -15,9 +16,7 @@ class ProductDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureButtonShadow()
-        productImage.image = UIImage(named: incomingItem?.image ?? "")
-        productName.text = incomingItem?.name
-        productPrice.text = "₺\(incomingItem?.price ?? 0)"
+        configProductViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,29 +42,42 @@ class ProductDetailVC: UIViewController {
     }
     
     @IBAction func addToCartButtonTapped(_ sender: Any) {
-        guard let item = incomingItem else { return } // incomingItem -> Product
-            let selectedQuantity = self.quantity // kullanıcının seçtiği adet
+        guard let item = incomingItem else { return }
+            
+        let selectedQuantity = self.quantity
+        let cartItem = Cart(from: item, quantity: selectedQuantity, username: "beyzazehra")
 
-            let cartItem = Cart(from: item, quantity: selectedQuantity, username: "beyzazehra")
-
-            APIService.shared.addToCart(cartItem: cartItem) { result in
+        APIService.shared.fetchCartItems(username: "beyzazehra") { [weak self] result in
                 switch result {
-                case .success(let value):
-                    print("✅ Sepete eklendi: \(value)")
+                case .success(let products):
+                    var oldProduct = products.first(where: { $0.name == item.name })
+                    if oldProduct != nil {
+                        oldProduct?.quantity! += selectedQuantity
+                        APIService.shared.updateCart2(cartItem: oldProduct!) { result in
+                            switch result {
+                            case .success(let value):
+                                print("Sepete eklendi: \(value)")
+                                self?.performSegue(withIdentifier: "goToCart", sender: cartItem)
+
+                            case .failure(let error):
+                                print("Hata: \(error.localizedDescription)")
+                            }
+                        }
+                    } else {
+                        APIService.shared.addToCart(cartItem: cartItem) { result in
+                            switch result {
+                            case .success(let value):
+                                print("Sepete eklendi: \(value)")
+                                self?.performSegue(withIdentifier: "goToCart", sender: cartItem)
+                            case .failure(let error):
+                                print("Hata: \(error.localizedDescription)")
+                            }
+                        }
+                    }
                 case .failure(let error):
-                    print("❌ Hata: \(error.localizedDescription)")
+                    print("Error fetching products: \(error.localizedDescription)")
                 }
             }
-
-            performSegue(withIdentifier: "goToCart", sender: cartItem)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToCart",
-           let destinationVC = segue.destination as? CartVC,
-           let productToSend = sender as? Product {
-            destinationVC.incomingItem = productToSend
-        }
     }
 
     private func configureButtonShadow() {
@@ -78,6 +90,23 @@ class ProductDetailVC: UIViewController {
         addToCartButton.layer.shadowOffset = CGSize(width: 0, height: 4)
         addToCartButton.layer.shadowRadius = 6
         addToCartButton.layer.masksToBounds = false
+    }
+    
+    func configProductViews() {
+        productName.text = incomingItem?.name
+        productPrice.text = "₺\(incomingItem?.price ?? 0)"
+        let imageUrl = incomingItem?.imageURL
+        AF.request(imageUrl!).responseData { response in
+            switch response.result {
+            case .success(let data):
+                
+                DispatchQueue.main.async {
+                    self.productImage.image = UIImage(data: data)
+                }
+            case .failure(let error):
+                print("Resim yükleme hatası: \(error)")
+            }
+        }
     }
 }
 
