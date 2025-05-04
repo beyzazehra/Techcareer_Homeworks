@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import Lottie
 
 class ProductDetailVC: UIViewController {
 
@@ -90,7 +91,9 @@ class ProductDetailVC: UIViewController {
                             switch result {
                             case .success(let value):
                                 print("Sepete eklendi: \(value)")
-                                self?.performSegue(withIdentifier: "goToCart", sender: cartItem)
+                                self?.showLottieAnimation {
+                                    self?.performSegue(withIdentifier: "goToCart", sender: cartItem)
+                                }
 
                             case .failure(let error):
                                 print("Hata: \(error.localizedDescription)")
@@ -101,7 +104,9 @@ class ProductDetailVC: UIViewController {
                             switch result {
                             case .success(let value):
                                 print("Sepete eklendi: \(value)")
-                                self?.performSegue(withIdentifier: "goToCart", sender: cartItem)
+                                self?.showLottieAnimation {
+                                    self?.performSegue(withIdentifier: "goToCart", sender: cartItem)
+                                }
                             case .failure(let error):
                                 print("Hata: \(error.localizedDescription)")
                             }
@@ -144,6 +149,26 @@ class ProductDetailVC: UIViewController {
             case .failure(let error):
                 print("Resim yükleme hatası: \(error)")
             }
+        }
+    }
+    
+    func showLottieAnimation(completion: @escaping () -> Void) {
+        let overlayView = UIView(frame: self.view.bounds)
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        overlayView.isUserInteractionEnabled = false
+
+        let animationView = LottieAnimationView(name: "Animation - 1746358204055")
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.center = overlayView.center
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .playOnce
+
+        overlayView.addSubview(animationView)
+        self.view.addSubview(overlayView)
+
+        animationView.play { finished in
+            overlayView.removeFromSuperview()
+            completion()
         }
     }
 }
