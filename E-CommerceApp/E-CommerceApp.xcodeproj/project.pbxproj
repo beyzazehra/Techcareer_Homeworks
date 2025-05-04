@@ -10,11 +10,13 @@
 		77499C7D2DC78A3700E1A7FE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 77499C7C2DC78A3700E1A7FE /* Lottie */; };
 		77499C7F2DC78A5500E1A7FE /* Animation - 1746358204055.json in Resources */ = {isa = PBXBuildFile; fileRef = 77499C7E2DC78A5500E1A7FE /* Animation - 1746358204055.json */; };
 		77499C822DC7A7B500E1A7FE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 77499C812DC7A7B500E1A7FE /* Kingfisher */; };
+		77499C842DC7ACC100E1A7FE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77499C832DC7ACA700E1A7FE /* README.md */; };
 		7789FCD72DC3F698003ECD37 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7789FCD62DC3F698003ECD37 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		77499C7E2DC78A5500E1A7FE /* Animation - 1746358204055.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Animation - 1746358204055.json"; sourceTree = "<group>"; };
+		77499C832DC7ACA700E1A7FE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		77A2E66E2DC24A840073C7E7 /* E-CommerceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "E-CommerceApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -29,6 +31,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		77499C852DC7ACF300E1A7FE /* Screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		77A2E6702DC24A840073C7E7 /* E-CommerceApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -56,6 +63,8 @@
 		77A2E6652DC24A840073C7E7 = {
 			isa = PBXGroup;
 			children = (
+				77499C852DC7ACF300E1A7FE /* Screenshots */,
+				77499C832DC7ACA700E1A7FE /* README.md */,
 				77499C7E2DC78A5500E1A7FE /* Animation - 1746358204055.json */,
 				77A2E6702DC24A840073C7E7 /* E-CommerceApp */,
 				77A2E66F2DC24A840073C7E7 /* Products */,
@@ -86,6 +95,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				77499C852DC7ACF300E1A7FE /* Screenshots */,
 				77A2E6702DC24A840073C7E7 /* E-CommerceApp */,
 			);
 			name = "E-CommerceApp";
@@ -143,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77499C7F2DC78A5500E1A7FE /* Animation - 1746358204055.json in Resources */,
+				77499C842DC7ACC100E1A7FE /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
