@@ -13,7 +13,6 @@ class FavoritesVC: UIViewController {
         favsTableView.dataSource = self
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadFavorites()
@@ -69,6 +68,4 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
                    titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Sil"
     }
-    
-    
 }

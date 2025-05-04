@@ -147,7 +147,6 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
             self?.updateItemQuantity(at: indexPath, newQuantity: newQuantity)
         }
 
-
         return cell
     }
 }

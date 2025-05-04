@@ -1,9 +1,8 @@
 import UIKit
-import Alamofire
+import Kingfisher
 
 class CustomCollectionViewCell: UICollectionViewCell {
-    
-    
+        
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -19,17 +18,8 @@ class CustomCollectionViewCell: UICollectionViewCell {
         productNameLabel.text = product.name
         priceLabel.text = "\(product.price ?? 0) ₺"
         
-        let imageUrl = product.imageURL
-        AF.request(imageUrl).responseData { response in
-            switch response.result {
-            case .success(let data):
-                
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data)
-                }
-            case .failure(let error):
-                print("Resim yükleme hatası: \(error)")
-            }
+        if let urlString = product.imageURL, let url = URL(string: urlString) {
+            imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         }
     }
 }

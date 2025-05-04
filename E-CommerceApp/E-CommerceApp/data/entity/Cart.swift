@@ -9,10 +9,10 @@ struct Cart: Codable {
     let brand: String?
     var quantity: Int?
     var username: String?
-    var imageURL: String {
-            guard let image = image else { return "" }
-            return "http://kasimadalan.pe.hu/urunler/resimler/\(image)"
-        }
+    var imageURL: String? {
+        guard let image = image else { return nil }
+        return "http://kasimadalan.pe.hu/urunler/resimler/\(image)"
+    }
 
     enum CodingKeys: String, CodingKey {
         case id = "sepetId"

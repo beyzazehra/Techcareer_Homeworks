@@ -49,7 +49,6 @@ class ProductDetailVC: UIViewController {
             updateFavoriteIcon()
     }
 
-
     func updateFavoriteIcon() {
         guard let item = incomingItem, let id = item.id else { return }
         let favoriteIDs = UserDefaults.standard.array(forKey: "favoriteIDs") as? [Int] ?? []
@@ -61,6 +60,7 @@ class ProductDetailVC: UIViewController {
         guard let item = incomingItem, let id = item.id else { return }
         let favorites = UserDefaults.standard.array(forKey: "favoriteIDs") as? [Int] ?? []
         incomingItem!.isFavorite = favorites.contains(id)
+        updateFavoriteIcon()
     }
 
     @IBAction func decraseQuantity(_ sender: Any) {
@@ -138,17 +138,8 @@ class ProductDetailVC: UIViewController {
         
         productPrice.text = "₺\(incomingItem?.price ?? 0)"
         
-        let imageUrl = incomingItem?.imageURL
-        AF.request(imageUrl!).responseData { response in
-            switch response.result {
-            case .success(let data):
-                
-                DispatchQueue.main.async {
-                    self.productImage.image = UIImage(data: data)
-                }
-            case .failure(let error):
-                print("Resim yükleme hatası: \(error)")
-            }
+        if let urlString = incomingItem?.imageURL, let url = URL(string: urlString) {
+            productImage.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         }
     }
     

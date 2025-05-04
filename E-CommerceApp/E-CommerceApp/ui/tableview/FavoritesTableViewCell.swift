@@ -18,17 +18,8 @@ class FavoritesTableViewCell: UITableViewCell {
     func configure(with product: Product) {
         favProductName.text = product.name
         favProductPrice.text = "₺\(product.price ?? 0)"
-        let imageUrl = product.imageURL
-        AF.request(imageUrl).responseData { response in
-            switch response.result {
-            case .success(let data):
-                
-                DispatchQueue.main.async {
-                    self.favImageView.image = UIImage(data: data)
-                }
-            case .failure(let error):
-                print("Resim yükleme hatası: \(error)")
-            }
+        if let urlString = product.imageURL, let url = URL(string: urlString) {
+            favImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         }
     }
 }

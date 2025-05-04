@@ -1,8 +1,7 @@
 import UIKit
-import Alamofire
+import Kingfisher
 
 class CustomTableViewCell: UITableViewCell {
-    
     
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productName: UILabel!
@@ -28,17 +27,8 @@ class CustomTableViewCell: UITableViewCell {
         quantity = product.quantity ?? 1
         quantityLabel.text = "\(quantity)"
         
-        let imageUrl = product.imageURL
-        AF.request(imageUrl).responseData { response in
-            switch response.result {
-            case .success(let data):
-                
-                DispatchQueue.main.async {
-                    self.productImageView.image = UIImage(data: data)
-                }
-            case .failure(let error):
-                print("Resim yükleme hatası: \(error)")
-            }
+        if let urlString = product.imageURL, let url = URL(string: urlString) {
+            productImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         }
     }
     

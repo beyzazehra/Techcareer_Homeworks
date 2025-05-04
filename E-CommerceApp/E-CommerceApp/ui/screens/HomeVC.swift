@@ -165,7 +165,6 @@ class HomeVC: UIViewController {
     func styleButton(_ button: UIButton) {
         button.backgroundColor = UIColor(red: 207/255, green: 255/255, blue: 105/255, alpha: 1.0)
     }
-    
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -188,7 +187,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         performSegue(withIdentifier: "goToProductDetail", sender: self)
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToProductDetail" {
             let destinationVC = segue.destination as! ProductDetailVC
